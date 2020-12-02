@@ -6,7 +6,7 @@
 
 
 MinMaxAgent::MinMaxAgent(const State& state)
-    : root(state)
+    : root(std::make_shared<Node>(state))
     , token(state.get_next_player())
 {}
 

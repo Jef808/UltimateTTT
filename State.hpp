@@ -8,6 +8,7 @@
 #include <vector>
 #include <ostream>
 #include <memory>
+#include <list>
 
 
 /** The possible values for a Cell in a Tic-Tac-Toe grid. */
@@ -30,16 +31,22 @@ public:
     using grid_t = std::array<Token, 9>;
     using line_t = std::array<int, 3>;
 
+    /** Default constructor initializes cells to the EMPTY token */
     State()
         : grid{Token::EMPTY}
     {}
-    
-    State(grid_t _grid)
+
+    /** Initialize a State from a given 3x3 grid */
+    explicit State(grid_t _grid)
         : grid(_grid)
     {}
 
-    State(const State& other) = default;
-    ~State() = default;
+    State(const State&) = default;
+    State(State&&)      = default;
+    ~State()            = default;
+
+    State& operator = (const State&) = default;
+    State& operator=(State&&) = default;
 
 private:
     /** The grid holding the cells of the game */
@@ -64,7 +71,7 @@ public:
      * Generate all possible moves from this position.
      * @return vector containing indices of each empty cell.
      */
-    std::vector<int> get_valid_actions() const;
+    std::list<int> get_valid_actions() const;
 
     /**
      * Play a move on the board.

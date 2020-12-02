@@ -30,7 +30,7 @@ private:
     const Token token;
 
     /** Tree datastructure to run the agent's algorithm. */
-    mutable Node root;
+    mutable std::weak_ptr<Node> root;
     
     /**
      * Determine the minimax score of a (Node) state and store it
