@@ -71,7 +71,7 @@ public:
      * Generate all possible moves from this position.
      * @return vector containing indices of each empty cell.
      */
-    std::list<int> get_valid_actions() const;
+    std::vector<int> get_valid_actions() const;
 
     /**
      * Play a move on the board.

@@ -53,9 +53,9 @@ bool compare(const State& state, const State::line_t& line, Token value)
     return true;
 }
 
-std::list<int> State::get_valid_actions() const
+std::vector<int> State::get_valid_actions() const
 {
-    std::list<int> ret;
+    std::vector<int> ret;
 
     for (int i = 0; i < 9; ++i) {
         if (grid[i] == Token::EMPTY) {

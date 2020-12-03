@@ -1,5 +1,6 @@
 #include "State.hpp"
 #include "MinMaxAgent.hpp"
+#include "Node.hpp"
 #include <algorithm>
 #include <iostream>
 
@@ -17,7 +18,7 @@ int main()
     // Let's see how the agent evaluates this position from either side.
     State board(board1);
     
-    MinMaxAgent agent(board);
+    MinMaxAgent agent = MinMaxAgent(Node(board));
 
     std::cout << agent.choose_action() << std::endl;
 }
