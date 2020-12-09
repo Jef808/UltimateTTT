@@ -18,6 +18,8 @@ enum class Token {
     O
 };
 
+inline bool operator!(const Token t) { return t==Token::EMPTY; }
+
 inline std::ostream& operator<<(std::ostream& _out, Token t);
 
 
@@ -37,16 +39,9 @@ public:
     {}
 
     /** Initialize a State from a given 3x3 grid */
-    explicit State(grid_t _grid)
+    State(const grid_t& _grid)
         : grid(_grid)
     {}
-
-    State(const State&) = default;
-    State(State&&)      = default;
-    ~State()            = default;
-
-    State& operator = (const State&) = default;
-    State& operator=(State&&) = default;
 
 private:
     /** The grid holding the cells of the game */
@@ -81,6 +76,9 @@ public:
      * @return  A copy of the state with the move played.
     */
     State apply_action(int ndx) const;
+
+    /** Mutable version of the method */
+    void apply_action(int ndx, Token t);
 
     /** Check who is the player to play next. */
     Token get_next_player() const;

@@ -5,20 +5,36 @@
 #include <iostream>
 
 
+constexpr std::array<Token, 9>  EMPTY_GRID {
+    { Token::EMPTY, Token::EMPTY, Token::EMPTY,
+      Token::EMPTY, Token::EMPTY, Token::EMPTY,
+      Token::EMPTY, Token::EMPTY, Token::EMPTY }
+};
+
 int main()
-    
 {
-    // In this position, it is X's move and he wins in one turn by playing 2, 3 or 8.
-    constexpr std::array<Token, 9> board1 {
-      { Token::X    , Token::O,     Token::EMPTY ,
-        Token::EMPTY, Token::X,     Token::O     ,
-        Token::X    , Token::O,     Token::EMPTY }
-    };    
+    State state(EMPTY_GRID);
+    MinMaxAgent agent(Token::O);
 
-    // Let's see how the agent evaluates this position from either side.
-    State board(board1);
-    
-    MinMaxAgent agent = MinMaxAgent(Node(board));
+    int oppR, oppC, n_valid_actions, row, col;
+    while (1) {
+        
+        std::cin >> oppR >> oppC; std::cin.ignore();
+        
+        if (oppR==-1) {
+            agent.set_token(Token::X);
+        } else {
+            state = state.apply_action(3*oppR + oppC);
+        }
+                
+        std::cin >> n_valid_actions; std::cin.ignore();
+        for (int i=0; i<n_valid_actions; ++i) {
+            std::cin >> row >> col; std::cin.ignore();
+        }
 
-    std::cout << agent.choose_action() << std::endl;
+        int action = agent.choose_action(state);
+        state = state.apply_action(action);
+        
+        std::cout << (int)(action/3) << ' ' << action%3 << std::endl;
+    }
 }

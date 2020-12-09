@@ -4,3 +4,6 @@ build/
 compile_commands.json
 Doxyfile
 test_*
+bundler.sh
+submit.cpp
+input.txt

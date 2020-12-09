@@ -26,3 +26,8 @@ add_library(ttt ${SOURCES})
 add_executable(main main.cpp)
 target_link_libraries(main ttt)
 
+add_executable(test test_board.cpp)
+target_link_libraries(test ttt)
+
+add_executable(test_node test_node.cpp)
+target_link_libraries(test_node ttt)

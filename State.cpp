@@ -56,8 +56,7 @@ bool compare(const State& state, const State::line_t& line, Token value)
 std::vector<int> State::get_valid_actions() const
 {
     std::vector<int> ret;
-
-    for (int i = 0; i < 9; ++i) {
+    for (int i=0; i<9; ++i) {
         if (grid[i] == Token::EMPTY) {
             ret.push_back(i);
         }
@@ -89,6 +88,10 @@ State State::apply_action(int ndx) const {
     grid_r[ndx] = get_next_player();
 
     return State(grid_r);
+}
+
+void State::apply_action(int ndx, Token t) {
+    grid[ndx] = t;
 }
 
 /** Checks if game is drawn */
